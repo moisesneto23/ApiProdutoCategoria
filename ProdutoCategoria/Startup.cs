@@ -29,8 +29,11 @@ namespace ProdutoCategoria
         public void ConfigureServices(IServiceCollection services)
         {
             var conn= Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<MyContext>(opt => opt.UseMySql(conn,ServerVersion.AutoDetect(conn)));
-            services.AddControllers();
+            services.AddDbContext<MyContext>(opt => opt.UseSqlServer(conn));
+            services.AddControllers().AddNewtonsoftJson(p =>
+            {
+                p.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ProdutoCategoria", Version = "v1" });

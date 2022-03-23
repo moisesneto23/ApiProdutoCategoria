@@ -21,7 +21,7 @@ namespace ProdutoCategoria.Controllers
         public string ImgUrl { get; set; }
         public float Estoque { get; set; }
         public DateTime  Caadastro { get; set; }
-        public Categoria Categoria { get; set; }
+        public virtual Categoria? Categoria { get; set; }
         public int CategoriaId { get; set; }
     }
 }
